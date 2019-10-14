@@ -24,6 +24,7 @@ import org.springframework.security.core.AuthenticationException;
  * {@link org.springframework.security.core.Authentication} implementation.
  *
  * @author Ben Alex
+ * 将认证抽象为选择认证方式与具体认证方式
  */
 public interface AuthenticationProvider {
 	// ~ Methods
@@ -43,6 +44,7 @@ public interface AuthenticationProvider {
 	 * <code>Authentication</code> class will be tried.
 	 *
 	 * @throws AuthenticationException if authentication fails.
+	 * 认证抽象方法
 	 */
 	Authentication authenticate(Authentication authentication)
 			throws AuthenticationException;
@@ -67,6 +69,8 @@ public interface AuthenticationProvider {
 	 *
 	 * @return <code>true</code> if the implementation can more closely evaluate the
 	 * <code>Authentication</code> class presented
+	 * 认证方式选择
+	 * 根据authentication 类型进行选择认证方式
 	 */
 	boolean supports(Class<?> authentication);
 }

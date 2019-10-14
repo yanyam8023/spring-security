@@ -97,6 +97,7 @@ public class SecurityContextPersistenceFilter extends GenericFilterBean {
 
 		HttpRequestResponseHolder holder = new HttpRequestResponseHolder(request,
 				response);
+		// SESSION 中加载Security 上下文
 		SecurityContext contextBeforeChainExecution = repo.loadContext(holder);
 
 		try {

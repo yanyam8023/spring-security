@@ -160,7 +160,7 @@ public class ProviderManager implements AuthenticationManager, MessageSourceAwar
 		Authentication result = null;
 		Authentication parentResult = null;
 		boolean debug = logger.isDebugEnabled();
-
+		// 认证链中的的认证方式一一进行认证，若认证成功则不执行后续认证链
 		for (AuthenticationProvider provider : getProviders()) {
 			if (!provider.supports(toTest)) {
 				continue;

@@ -66,6 +66,15 @@ public class UsernamePasswordAuthenticationFilter extends
 	// ~ Methods
 	// ========================================================================================================
 
+	/**
+	 * @param request from which to extract parameters and perform the authentication
+	 * @param response the response, which may be needed if the implementation has to do a
+	 * redirect as part of a multi-stage authentication process (such as OpenID).
+	 *
+	 * @return
+	 * @throws AuthenticationException
+	 * 通过username、password 尝试认证
+	 */
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
 		if (postOnly && !request.getMethod().equals("POST")) {
@@ -92,7 +101,7 @@ public class UsernamePasswordAuthenticationFilter extends
 		// Allow subclasses to set the "details" property
 		setDetails(request, authRequest);
 
-		return this.getAuthenticationManager().authenticate(authRequest);
+		return this.getAuthenticationManager().authenticate(authRequest); //具体认证方式
 	}
 
 	/**

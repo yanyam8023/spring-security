@@ -130,6 +130,7 @@ import java.util.*;
  * @author Ben Alex
  * @author Luke Taylor
  * @author Rob Winch
+ * SpringSecurity 代理，也是filter链入口
  */
 public class FilterChainProxy extends GenericFilterBean {
 	// ~ Static fields/initializers
@@ -294,8 +295,8 @@ public class FilterChainProxy extends GenericFilterBean {
 		private final FilterChain originalChain;
 		private final List<Filter> additionalFilters;
 		private final FirewalledRequest firewalledRequest;
-		private final int size;
-		private int currentPosition = 0;
+		private final int size;  // filters 个数
+		private int currentPosition = 0; // 当前filter位置
 
 		private VirtualFilterChain(FirewalledRequest firewalledRequest,
 				FilterChain chain, List<Filter> additionalFilters) {

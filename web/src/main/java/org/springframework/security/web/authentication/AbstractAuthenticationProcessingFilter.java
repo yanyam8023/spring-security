@@ -209,13 +209,13 @@ public abstract class AbstractAuthenticationProcessingFilter extends GenericFilt
 		Authentication authResult;
 
 		try {
-			authResult = attemptAuthentication(request, response);
+			authResult = attemptAuthentication(request, response);  // 尝试身份认证
 			if (authResult == null) {
 				// return immediately as subclass has indicated that it hasn't completed
 				// authentication
 				return;
 			}
-			sessionStrategy.onAuthentication(authResult, request, response);
+			sessionStrategy.onAuthentication(authResult, request, response); // 登陆后session处理策略
 		}
 		catch (InternalAuthenticationServiceException failed) {
 			logger.error(
@@ -237,7 +237,7 @@ public abstract class AbstractAuthenticationProcessingFilter extends GenericFilt
 			chain.doFilter(request, response);
 		}
 
-		successfulAuthentication(request, response, chain, authResult);
+		successfulAuthentication(request, response, chain, authResult); // 登录成功后的处理
 	}
 
 	/**
@@ -356,6 +356,7 @@ public abstract class AbstractAuthenticationProcessingFilter extends GenericFilt
 	}
 
 	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		logger.debug("认证实现为：" + authenticationManager);
 		this.authenticationManager = authenticationManager;
 	}
 
